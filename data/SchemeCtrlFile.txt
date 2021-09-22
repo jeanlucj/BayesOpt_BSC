@@ -1,0 +1,69 @@
+# Variety Development Pipeline (VDP)
+# The number of cycles to run the two-part scheme
+nCyclesToRun
+2
+
+# How many burn-in cycles of phenotypic selection before
+# starting the two-part genomic selection?
+nBurnInCycles
+6
+
+# The number of VDP stages
+# Each stage has an error variance specific to it
+# That should relate to the genetic variance given
+# in the FounderCtrlFile
+nStages
+3
+stageNames
+SDN CET PYT
+
+# Vector of number of entries used in each stage
+nEntries
+100 40 16
+
+# Vector of number of reps used in each stage
+nReps
+1 1 2
+
+# Vector of number of locations used in each stage
+nLocs
+1 2 3
+
+# Vector of error variances estimated from historical data 
+errVars
+400 120 70
+
+# Population Improvement Cycle (PIC)
+# Effective population size for optimal contributions
+optiContEffPop
+20
+
+# Number of breeding population progeny each cycle
+nBreedingProg
+100
+
+# Number of genomic selection cycles per year in PIC
+nPopImpCycPerYear
+2
+
+# Number of years back VDP trials for training
+# A higher number here will mean a larger TP, but also
+# slower simulations
+keepNTrainingCyc
+3
+
+# Number of cycles back of breeding individuals as 
+# parent candidates. If you put a number >1, then 
+# "older" individuals could be chosen as parents
+# Given optimal contributions, I don't see any down
+# side to having a number >1 (other than slower simulation)
+keepNBreedingCyc
+1
+
+# How old does a breeding individual need to be before
+# it can be used as a parent? A value of 0 means that
+# as soon as it comes off the crossing block it can go
+# into a crossing nursery
+minParentAge
+1
+
