@@ -3,6 +3,7 @@
 
 # R stuff
 output/.Rapp.history
+.Rhistory
 
 # Any outputs
 output/

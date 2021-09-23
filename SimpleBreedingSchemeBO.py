@@ -1,12 +1,12 @@
 # ### Sources of variance in breeding scheme optimization
 # There will be N_INIT initializations and burn-ins leading up to the two-stage optimization
-N_INIT = 2
+N_INIT = 6
 # There will be N_OPTIMIZATIONS per initialization
 N_OPTIMIZATIONS = 2
 # Within each optimization, there will be N_ITER calls to the acquisition function
-N_ITER = 3
+N_ITER = 500
 
-TESTING = True
+TESTING = False
 
 # To know how the parameters work, know how many stages are in the breeding scheme
 N_STAGES = 3
@@ -102,7 +102,7 @@ for initialization in range(N_INIT):
 
         # run N_ITER rounds of BayesOpt after the initial random batch
         for iteration in range(N_ITER):
-            print(f"\nIteration {iteration:>2} of {N_ITER} ", end="")
+            print(f"\nInitialization {initialization:>2} Optimization {optimization:>2} Iteration {iteration:>2} of {N_ITER} ", end="")
             surrogate = initialize_model(train_x, train_obj)
         
             # define the qEI using a QMC sampler [I don't understand what this does]
@@ -140,8 +140,7 @@ for initialization in range(N_INIT):
         stor_train_x.append([train_x.numpy()])
         stor_train_obj.append([train_obj.numpy()])
         stor_traces.append(best_observed_vec)
-
-ro.globalenv['train_x'] = stor_train_x
-ro.globalenv['train_obj'] = stor_train_obj
-ro.globalenv['traces'] = stor_traces
-ro.r.source('AnalyzeOptData.R')
+        ro.globalenv['train_x'] = stor_train_x
+        ro.globalenv['train_obj'] = stor_train_obj
+        ro.globalenv['traces'] = stor_traces
+        ro.r.source('AnalyzeOptData.R')
