@@ -1,10 +1,12 @@
 # ### Sources of variance in breeding scheme optimization
 # There will be N_INIT initializations and burn-ins leading up to the two-stage optimization
-N_INIT = 6
+N_INIT = 2
 # There will be N_OPTIMIZATIONS per initialization
 N_OPTIMIZATIONS = 2
 # Within each optimization, there will be N_ITER calls to the acquisition function
-N_ITER = 500
+N_ITER = 3
+
+TESTING = True
 
 # To know how the parameters work, know how many stages are in the breeding scheme
 N_STAGES = 3
@@ -62,8 +64,6 @@ warnings.filterwarnings('ignore', category=RuntimeWarning)
 MC_SAMPLES = 256
 NUM_RESTARTS = 30 # 10 * input_dim
 RAW_SAMPLES = 600 # 200 * input_dim
-
-TESTING = False
 
 # Storage for the optimizations
 stor_train_x = []
@@ -137,8 +137,8 @@ for initialization in range(N_INIT):
             train_obj = torch.cat([train_obj, new_obj])
             best_observed_obj = train_obj.max().item()
             best_observed_vec.append(best_observed_obj)
-        stor_train_x.append(train_x)
-        stor_train_obj.append(train_obj)
+        stor_train_x.append([train_x.numpy()])
+        stor_train_obj.append([train_obj.numpy()])
         stor_traces.append(best_observed_vec)
 
 ro.globalenv['train_x'] = stor_train_x

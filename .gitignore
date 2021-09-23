@@ -1,6 +1,12 @@
 # Apple-specific junk
 .DS_Store
 
+# R stuff
+output/.Rapp.history
+
+# Any outputs
+output/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
