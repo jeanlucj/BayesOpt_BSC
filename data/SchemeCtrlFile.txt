@@ -1,7 +1,7 @@
 # Variety Development Pipeline (VDP)
 # The number of cycles to run the two-part scheme
 nCyclesToRun
-2
+5
 
 # How many burn-in cycles of phenotypic selection before
 # starting the two-part genomic selection?
